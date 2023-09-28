@@ -7,18 +7,14 @@ import 'package:enquetec/src/admin/pages/settings/register/coordinator_register.
 import 'package:enquetec/src/admin/pages/settings/register/student_register.dart';
 import 'package:enquetec/src/admin/repositories/coordinator_repository.dart';
 import 'package:enquetec/src/admin/services/admin_notification_service.dart';
-import 'package:enquetec/src/models/cousers.dart';
 import 'package:enquetec/src/pages/developer_contact.dart';
-import 'package:enquetec/src/pages/enquetes/enquetes_page.dart';
 import 'package:enquetec/src/widgets/copy_text.dart';
 import 'package:enquetec/src/widgets/navigation_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../../../pages/privacy_policy.dart';
@@ -91,7 +87,7 @@ class _SettingAdminState extends State<SettingAdmin> {
               await coordinatorControl.deleteDatabase();
               await AdminNotificationService().endTopic(coordinator);
               await FirebaseAuth.instance.signOut();
-              Navigator.pop(context);
+              if(mounted)Navigator.pop(context);
               main();
             }catch (e){
               Fluttertoast.showToast(msg: 'Não foi possível sair. Verifique sua conexão de internet');

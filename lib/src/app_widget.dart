@@ -1,8 +1,6 @@
 import 'package:enquetec/src/themes/main.dart';
 import 'package:flutter/material.dart';
 
-import 'models/student.dart';
-
 class NavigationService {
   static GlobalKey<NavigatorState> navigatorKey =
   GlobalKey<NavigatorState>();

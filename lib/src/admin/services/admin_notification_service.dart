@@ -34,7 +34,7 @@ class AdminNotificationService{
   final _firebaseMessaging = FirebaseMessaging.instance;
 
   Future<void> initNotifications() async {
-    NotificationSettings settings = await _firebaseMessaging.requestPermission(
+    await _firebaseMessaging.requestPermission(
       alert: true,
       announcement: false,
       badge: true,

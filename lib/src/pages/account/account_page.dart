@@ -1,8 +1,6 @@
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
 import 'package:enquetec/src/controllers/student_controller.dart';
 import 'package:enquetec/src/models/student.dart';
-import 'package:enquetec/src/pages/account/notification_page.dart';
-import 'package:enquetec/src/pages/account/setting_page.dart';
 import 'package:enquetec/src/pages/account/tabs/historic_tab.dart';
 import 'package:enquetec/src/pages/account/tabs/notes_tab.dart';
 import 'package:enquetec/src/pages/account/tabs/schedule_tab.dart';
@@ -114,7 +112,7 @@ class _AccountPageState extends State<AccountPage>{
       });
       Fluttertoast.showToast(msg: 'Dados atualizados com sucesso!');
     }catch(e){
-      print('Error $e');
+      debugPrint('Error $e');
       if(e.toString() == 'Exception: User or Password Incorrect'){
         Fluttertoast.showToast(msg: 'Faça o Login Novamente');
         control.deleteDatabase();

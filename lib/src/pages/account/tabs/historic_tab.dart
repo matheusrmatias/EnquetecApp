@@ -3,11 +3,10 @@ import 'package:enquetec/src/repositories/student_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../themes/main.dart';
 import '../../../widgets/discipline_historic_card.dart';
 
 class HistoricTab extends StatefulWidget {
-  final onPressed;
+  final Function(Student) onPressed;
   const HistoricTab({Key? key, required this.onPressed}) : super(key: key);
 
   @override

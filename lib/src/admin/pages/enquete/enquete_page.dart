@@ -1,10 +1,6 @@
-import 'package:enquetec/src/admin/controllers/enquetes_admin_control.dart';
-import 'package:enquetec/src/admin/models/enquete_model.dart';
 import 'package:enquetec/src/admin/repositories/coordinator_repository.dart';
 import 'package:enquetec/src/admin/repositories/enquete_admin_repository.dart';
 import 'package:enquetec/src/admin/widgets/enquete_admin_card.dart';
-import 'package:enquetec/src/models/enquete.dart';
-import 'package:enquetec/src/repositories/enquete_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';

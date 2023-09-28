@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:enquetec/src/models/assessment.dart';
 import 'package:enquetec/src/models/schedule.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../models/student.dart';
 
@@ -10,12 +11,12 @@ class StudentAccount{
   bool _isLoad = false;
 
   StudentAccount(){
-   print('Contructor');
+   debugPrint('Contructor');
    _initialize();
   }
 
   Future<void> _initialize() async{
-    print('initialize');
+    debugPrint('initialize');
     await view.setJavaScriptMode(JavaScriptMode.unrestricted);
     await view.loadRequest(Uri.parse('https://siga.cps.sp.gov.br/aluno/login.aspx'));
     await view.setNavigationDelegate(NavigationDelegate(
@@ -31,7 +32,7 @@ class StudentAccount{
     for(i; i<10; i++){
       await Future.delayed(const Duration(milliseconds: 1000),()async{
         if(await view.currentUrl() == 'https://siga.cps.sp.gov.br/aluno/home.aspx' && _isLoad){
-          print('home loaded');
+          debugPrint('home loaded');
           await view.runJavaScriptReturningResult("document.getElementById('span_vUNI_UNIDADENOME_MPAGE').textContent").then((value) => student.fatec=value.toString().replaceAll('"', ''));
           await view.runJavaScriptReturningResult("document.getElementById('span_vACD_CURSONOME_MPAGE').textContent").then((value) => student.graduation=value.toString().replaceAll('"', ''));
           await view.runJavaScriptReturningResult("document.getElementById('span_vSITUACAO_MPAGE').textContent").then((value) => student.progress=value.toString().replaceAll('"', ''));
@@ -45,9 +46,9 @@ class StudentAccount{
           await view.runJavaScriptReturningResult("document.getElementById('MPW0041FOTO').firstChild.src").then((value) => student.imageUrl=value.toString().replaceAll('"', ''));
           _isLoad = false;
           i=11;
-          print('user basic data coleted');
+          debugPrint('user basic data coleted');
         }else if(_isLoad && await view.currentUrl() == 'https://siga.cps.sp.gov.br/aluno/login.aspx'){
-          print('login loaded');
+          debugPrint('login loaded');
           _isLoad = false;
           await view.runJavaScript("document.getElementById('vSIS_USUARIOID').value='${student.cpf}'");
           await view.runJavaScript("document.getElementById('vSIS_USUARIOSENHA').value='${student.password}'");
@@ -76,7 +77,7 @@ class StudentAccount{
       for(k;k<10;k++){
         await Future.delayed(const Duration(milliseconds: 1000),()async{
           if(_isLoad){
-            print('historic loaded');
+            debugPrint('historic loaded');
             List<Map<String,String>> historic = [];
             await view.runJavaScriptReturningResult("document.getElementById('Grid1ContainerTbl').getElementsByTagName('tbody')[0].getElementsByTagName('tr').length").then((value)async{
               for(int i=1; i<int.parse(value.toString()); i++){
@@ -135,7 +136,7 @@ class StudentAccount{
       for(i; i<10; i++){
         await Future.delayed(const Duration(milliseconds: 1000),()async{
           if(_isLoad){
-            print('assessments loaded');
+            debugPrint('assessments loaded');
             List<DisciplineAssessment> assessments = [];
             await view.runJavaScriptReturningResult("document.getElementById('Grid4ContainerTbl').firstChild.children.length/3").then((value)async{
               for(int j=0; j<int.parse(value.toString()); j++){
@@ -168,12 +169,12 @@ class StudentAccount{
             i=11;
             _isLoad=false;
             assessments.sort((a, b){
-              if(a.name!.contains('Estágio') || a.name!.contains('Trabalho de Graduação')){
+              if(a.name.contains('Estágio') || a.name.contains('Trabalho de Graduação')){
                 return 1;
-              }else if(b.name!.contains('Estágio') || b.name!.contains('Trabalho de Graduação')){
+              }else if(b.name.contains('Estágio') || b.name.contains('Trabalho de Graduação')){
                 return -1;
               }else{
-                return a.name!.compareTo(b.name!);
+                return a.name.compareTo(b.name);
               }
             });
             student.assessment = assessments;
@@ -195,7 +196,7 @@ class StudentAccount{
       for(i; i<10; i++){
         await Future.delayed(const Duration(milliseconds: 1000),()async{
           if(_isLoad) {
-            print('schedule loaded');
+            debugPrint('schedule loaded');
             List<Schedule> schedule = [];
             Map<String, String> acronyms = {};
             await view.runJavaScriptReturningResult(
@@ -248,7 +249,7 @@ class StudentAccount{
       for(int i = 0; i<10; i++){
         await Future.delayed(const Duration(milliseconds: 1000),()async{
           if(_isLoad) {
-            print('absences loaded');
+            debugPrint('absences loaded');
             for(int j = 0; j<student.assessment.length; j++){
               String prefix = '00';
               if(j>=9){
@@ -278,14 +279,14 @@ class StudentAccount{
   Future<void> userAssessmentDetails(Student student) async{
 
     for(int i = 0; i<student.assessment.length; i++){
-      await view.loadRequest(Uri.parse("https://siga.cps.sp.gov.br/aluno/planoensino.aspx?" + student.assessment[i].acronym, 0, 56));
+      await view.loadRequest(Uri.parse("https://siga.cps.sp.gov.br/aluno/planoensino.aspx?${student.assessment[i].acronym}", 0, 56));
 
       int j = 0;
       for(j; j<10; j++){
         await Future.delayed(const Duration(milliseconds: 1000), ()async{
           if(_isLoad){
             await view.runJavaScriptReturningResult('document.getElementById("span_W0008W0013vACD_DISCIPLINAAULASTOTAISPERIODO").textContent').then((value){
-              student.assessment[i].maxAbsences = (int.parse(value.toString().replaceAll('"', "").replaceAll(" ", ""))/4).toInt().toString();
+              student.assessment[i].maxAbsences = (int.parse(value.toString().replaceAll('"', "").replaceAll(" ", ""))~/4).toString();
               student.assessment[i].totalClasses = value.toString().replaceAll('"', "").replaceAll(" ", "");
             });
             await view.runJavaScriptReturningResult('document.getElementById("span_W0008W0013vACD_DISCIPLINAEMENTA").textContent').then((value){

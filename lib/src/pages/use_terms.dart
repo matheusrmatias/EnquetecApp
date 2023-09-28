@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:enquetec/src/pages/privacy_policy.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -26,7 +24,7 @@ class _UseTermsState extends State<UseTerms> {
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          child: Padding(padding: EdgeInsets.all(16),child: Column(
+          child: Padding(padding: const EdgeInsets.all(16),child: Column(
             children: [
               const Row(mainAxisAlignment: MainAxisAlignment.center,children: [Flexible(child: Text('TERMOS E CONDIÇÕES DE USO DO ENQUETEC', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)))]),
               const SizedBox(height: 4),
@@ -50,7 +48,7 @@ class _UseTermsState extends State<UseTerms> {
                 children: [
                   const TextSpan(text: '''Todos os dados estão protegidos conforme a Lei Geral de Proteção de Dados, e ao realizar o cadastro junto ao aplicativo, o ALUNO concorda integralmente com a coleta de dados conforme a Lei e com a ''', style: TextStyle(color: Colors.black,fontSize: 10, fontWeight: FontWeight.normal)),
                   TextSpan(text: 'Política de Privacidade ', style: TextStyle(color: MainColors.orange,fontSize: 10, fontWeight: FontWeight.normal), recognizer: TapAndPanGestureRecognizer()..onTapUp = (e){
-                    Navigator.push(context, PageTransition(child: PrivacyPolicy(), type: PageTransitionType.rightToLeft));
+                    Navigator.push(context, PageTransition(child: const PrivacyPolicy(), type: PageTransitionType.rightToLeft));
                   }),
                   const TextSpan(text: 'do GRUPO.', style: TextStyle(color: Colors.black,fontSize: 10, fontWeight: FontWeight.normal)),
 

@@ -1,6 +1,7 @@
 import 'package:enquetec/src/themes/main.dart';
 import 'package:flutter/material.dart';
 
+//ignore: must_be_immutable
 class HomeAdminNavigationBar extends StatefulWidget {
   List<HomeAdminNavigationBarItem> items;
   int currentIndex;
@@ -59,7 +60,7 @@ class _HomeAdminNavigationBarState extends State<HomeAdminNavigationBar> {
 }
 
 class HomeAdminNavigationBarItem{
-  final icon;
+  final IconData icon;
   final String text;
   HomeAdminNavigationBarItem({required this.icon, required this.text});
 }

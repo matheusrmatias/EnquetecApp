@@ -6,11 +6,9 @@ import 'package:enquetec/src/admin/repositories/message_repository.dart';
 import 'package:enquetec/src/admin/widgets/message_card.dart';
 import 'package:enquetec/src/themes/main.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lorem/flutter_lorem.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:snap_scroll_physics/snap_scroll_physics.dart';
 
 class MessagePage extends StatefulWidget {
   const MessagePage({super.key});

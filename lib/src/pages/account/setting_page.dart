@@ -1,9 +1,7 @@
 import 'package:enquetec/main.dart';
-import 'package:enquetec/src/controllers/notification_controller.dart';
 import 'package:enquetec/src/controllers/student_controller.dart';
 import 'package:enquetec/src/models/student.dart';
 import 'package:enquetec/src/pages/account/configs/display_settings_page.dart';
-import 'package:enquetec/src/login_page.dart';
 import 'package:enquetec/src/pages/developer_contact.dart';
 import 'package:enquetec/src/pages/privacy_policy.dart';
 import 'package:enquetec/src/pages/siga_page.dart';
@@ -12,18 +10,14 @@ import 'package:enquetec/src/repositories/student_repository.dart';
 import 'package:enquetec/src/services/notification_service.dart';
 import 'package:enquetec/src/themes/main.dart';
 import 'package:enquetec/src/widgets/copy_text.dart';
-import 'package:enquetec/src/widgets/link_button.dart';
 import 'package:enquetec/src/widgets/navigation_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:unicons/unicons.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -74,7 +68,7 @@ class _SettingPageState extends State<SettingPage> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: 70,
         child: ElevatedButton(
           onPressed: ()async{

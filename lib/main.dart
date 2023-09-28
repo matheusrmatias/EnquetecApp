@@ -137,9 +137,9 @@ void startAdmin(String password)async{
     FirebaseAuth auth = FirebaseAuth.instance;
     String? email = auth.currentUser!.email;
     String course = await coordinatorControl.getCourse(email!);
-    String name = await coordinatorControl.getName(email!);
+    String name = await coordinatorControl.getName(email);
     //
-    Coordinator coordinator = Coordinator(email: email!, course: course, name: name, uid: auth.currentUser!.uid, password: password);
+    Coordinator coordinator = Coordinator(email: email, course: course, name: name, uid: auth.currentUser!.uid, password: password);
     List<Message> messages = await control.queryAllMessages(coordinator);
     List<NotificationModel> notifications = await nControl.queryAllNotifications(coordinator);
     List<EnqueteModel> enquetes = await enquetesControl.queryCloudDatabase(coordinator);

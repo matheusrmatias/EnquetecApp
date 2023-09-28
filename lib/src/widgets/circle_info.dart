@@ -1,6 +1,7 @@
 import 'package:enquetec/src/themes/main.dart';
 import 'package:flutter/material.dart';
 
+//ignore: must_be_immutable
 class CircleInfo extends StatelessWidget {
   Color color = MainColors.orange;
   Color textColor;

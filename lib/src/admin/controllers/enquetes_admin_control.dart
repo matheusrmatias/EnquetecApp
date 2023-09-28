@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enquetec/src/admin/controllers/sqflite_coordinator_controller.dart';
 import 'package:enquetec/src/admin/models/coordinator_model.dart';
-import 'package:enquetec/src/models/enquete.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:sqflite/sqflite.dart';
 import '../models/enquete_model.dart';
 
@@ -27,7 +27,7 @@ class EnquetesAdminControl extends SqfliteCoordinatorControler{
     List<EnqueteModel> enquetes = [];
     await db.collection('enquetes').where("course", isEqualTo: coordinator.course).get().then((value){
       for (var enquete in value.docs) {
-        print('adicionado');
+        debugPrint('adicionado');
         enquetes.add(
           EnqueteModel(
               uid: enquete.id,

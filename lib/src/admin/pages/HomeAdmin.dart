@@ -1,5 +1,4 @@
 import 'package:enquetec/src/admin/pages/message_page.dart';
-import 'package:enquetec/src/admin/pages/notifications/notification_page.dart';
 import 'package:enquetec/src/admin/pages/enquete/send_enquetes_page.dart';
 import 'package:enquetec/src/admin/pages/notifications/send_notification_page.dart';
 import 'package:enquetec/src/admin/pages/settings/setting_page.dart';
@@ -123,8 +122,5 @@ class _HomeAdminState extends State<HomeAdmin> {
         items: items,
       ),
     );
-  }
-  eres(){
-    return BottomNavigationBar(items: [], onTap: (e){},);
   }
 }

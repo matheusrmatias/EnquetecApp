@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'coordinator_model.dart';
 class NotificationModel{
   final String title;
   final String body;

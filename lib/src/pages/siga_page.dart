@@ -2,10 +2,7 @@ import 'package:enquetec/src/controllers/student_controller.dart';
 import 'package:enquetec/src/models/student.dart';
 import 'package:enquetec/src/themes/main.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
-import '../repositories/student_repository.dart';
 
 class SigaPage extends StatefulWidget {
   const SigaPage({super.key});

@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../repositories/student_repository.dart';
 
 class ScheduleTab extends StatefulWidget {
-  final onPressed;
+  final Function(Student) onPressed;
   const ScheduleTab({super.key, required this.onPressed});
 
   @override

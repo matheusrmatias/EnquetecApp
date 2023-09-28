@@ -10,9 +10,10 @@ import 'package:unicons/unicons.dart';
 
 import '../../themes/main.dart';
 
+//ignore: must_be_immutable
 class StudentCard extends StatelessWidget {
   final Student student;
-  StudentCard({required this.student});
+  StudentCard({super.key, required this.student});
   late StudentAdminRepository studentAdminRep;
   late Coordinator coordinator;
 

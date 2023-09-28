@@ -49,9 +49,9 @@ class MessageControl extends SqfliteCoordinatorControler{
       Database db = await startDatabase();
 
       String sql = 'INSERT INTO message (uid,name, text, type, date) VALUES';
-      messages.forEach((message) {
+      for (var message in messages) {
         sql = "$sql('${message.uid}','${message.name}', '${message.text}', '${message.type}', '${message.date.toDate().millisecondsSinceEpoch}'),";
-      });
+      }
       sql = '${sql.substring(0,sql.length-1)};';
 
       if(messages.isNotEmpty)await db.execute(sql);

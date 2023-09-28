@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:enquetec/src/admin/models/message_model.dart';
 import 'package:enquetec/src/admin/models/notification_model.dart';
 import 'package:enquetec/src/app_widget.dart';
 import 'package:enquetec/src/controllers/notification_controller.dart';
@@ -8,6 +7,7 @@ import 'package:enquetec/src/models/student.dart';
 import 'package:enquetec/src/repositories/notification_student_repository.dart';
 import 'package:enquetec/src/repositories/setting_repository.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,7 +35,7 @@ Future<void> onReceiveNotification(RemoteMessage message) async{
 Future<void> onReceiveNotificationBackground(RemoteMessage message)async{
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setBool('newNotification', true);
-  print('newNotification');
+  debugPrint('newNotification');
 
 }
 
@@ -43,7 +43,7 @@ class NotificationService {
   final _firebaseMessaging = FirebaseMessaging.instance;
 
   Future<void> initNotifications() async {
-    NotificationSettings settings = await _firebaseMessaging.requestPermission(
+   await _firebaseMessaging.requestPermission(
       alert: true,
       announcement: false,
       badge: true,

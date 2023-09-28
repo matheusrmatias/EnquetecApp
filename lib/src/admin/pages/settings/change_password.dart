@@ -3,7 +3,6 @@ import 'package:enquetec/src/admin/models/coordinator_model.dart';
 import 'package:enquetec/src/admin/repositories/coordinator_repository.dart';
 import 'package:enquetec/src/widgets/login_input.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -85,7 +84,7 @@ class _ChangePasswordState extends State<ChangePassword> {
       coordinatorRep.coordinator = Coordinator(email: coordinatorRep.coordinator.email, course: coordinatorRep.coordinator.course, name: coordinatorRep.coordinator.name, uid: coordinatorRep.coordinator.uid, password: newPassword.text);
       await coordinatorControl.updateDatabase(coordinatorRep.coordinator);
       Fluttertoast.showToast(msg: 'Senha alterada com sucesso');
-      Navigator.pop(context);
+      if(mounted)Navigator.pop(context);
     }catch (e){
       Fluttertoast.showToast(msg: 'Ocorreu um erro ao alterar a senha');
       debugPrint('Error: $e');

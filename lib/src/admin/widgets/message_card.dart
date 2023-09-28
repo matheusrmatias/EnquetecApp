@@ -9,6 +9,7 @@ import 'package:unicons/unicons.dart';
 
 import '../models/message_model.dart';
 
+//ignore: must_be_immutable
 class MessageCard extends StatelessWidget {
   final Message message;
   MessageCard({super.key, required this.message});

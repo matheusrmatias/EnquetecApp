@@ -24,7 +24,7 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          child: Padding(padding: EdgeInsets.all(16),child: Column(
+          child: Padding(padding: const EdgeInsets.all(16),child: Column(
             children: [
               const Row(mainAxisAlignment: MainAxisAlignment.center,children: [Flexible(child: Text('POLÍTICA DE PRIVACIDADE', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)))]),
               const SizedBox(height: 4),

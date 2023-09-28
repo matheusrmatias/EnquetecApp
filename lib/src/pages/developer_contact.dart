@@ -28,7 +28,7 @@ class _DeveloperContactState extends State<DeveloperContact> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               children: [
                 LinkButton(func: ()async{

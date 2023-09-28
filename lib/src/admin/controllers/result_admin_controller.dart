@@ -26,7 +26,7 @@ class ResultAdminController extends SqfliteCoordinatorControler{
                   'Bom' : 0,
                   'Excelente' : 0
                 };
-                int? val = result!.questionsResult![key]![value.toString()];
+                int? val = result.questionsResult[key]![value.toString()];
                 val==null? '': val+=1;
                 result.questionsResult[key]![value.toString()] =  val ?? 0;
                 i++;
@@ -35,7 +35,7 @@ class ResultAdminController extends SqfliteCoordinatorControler{
           answer.data()['questions'].forEach((key, value) {
             int? val = result.questionsResult[key]?[value.toString()];
             val==null? val = 0: val+=1;
-            result.questionsResult[key]?[value.toString()] = val ?? 0;
+            result.questionsResult[key]?[value.toString()] = val;
             i++;
           });
 

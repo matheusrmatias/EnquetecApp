@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enquetec/src/admin/models/notification_model.dart';
 import 'package:enquetec/src/controllers/sqlite_controller.dart';
 import 'package:enquetec/src/models/student.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:sqflite/sqflite.dart';
 
 class NotificationController extends SqliteController{
@@ -14,7 +14,7 @@ class NotificationController extends SqliteController{
       '${notification.uid}', '${notification.title}', '${notification.body}', '${notification.link}', '${notification.course}', '${notification.coordinator}', ${notification.finalDate.toDate().millisecondsSinceEpoch}, ${notification.initialDate.toDate().millisecondsSinceEpoch}
     )''';
     await db.execute(sql);
-    print('insert notification');
+    debugPrint('insert notification');
   }
 
   Future<void> insertAllDatabase(List<NotificationModel> notifications)async{

@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import '../../../themes/main.dart';
 
 class NotesTab extends StatefulWidget {
-  final onPressed;
-  const NotesTab({Key? key, this.onPressed}) : super(key: key);
+  final Function(Student) onPressed;
+  const NotesTab({Key? key, required this.onPressed}) : super(key: key);
 
   @override
   State<NotesTab> createState() => _NotesTabState();
@@ -30,6 +30,6 @@ class _NotesTabState extends State<NotesTab> {
           itemBuilder: (context, index)=>DisciplineNoteCard(discipline: student.assessment[index]),
         ),
       ),
-    );;
+    );
   }
 }

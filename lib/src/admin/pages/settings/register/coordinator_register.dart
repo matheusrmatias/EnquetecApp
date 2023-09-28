@@ -3,7 +3,6 @@ import 'package:enquetec/src/admin/models/coordinator_model.dart';
 import 'package:enquetec/src/admin/repositories/coordinator_repository.dart';
 import 'package:enquetec/src/widgets/login_input.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';

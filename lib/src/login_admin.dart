@@ -1,7 +1,5 @@
 import 'package:enquetec/main.dart';
-import 'package:enquetec/src/admin/pages/HomeAdmin.dart';
 import 'package:enquetec/src/forgot_password.dart';
-import 'package:enquetec/src/pages/use_terms.dart';
 import 'package:enquetec/src/widgets/login_input.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';

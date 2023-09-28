@@ -4,6 +4,7 @@ import 'package:enquetec/src/controllers/sqlite_controller.dart';
 import 'package:enquetec/src/models/assessment.dart';
 import 'package:enquetec/src/models/schedule.dart';
 import 'package:enquetec/src/models/student.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:sqflite/sqflite.dart';
 
 class StudentController extends SqliteController{
@@ -19,21 +20,21 @@ class StudentController extends SqliteController{
     ''';
 
     String sqlHistoric = 'INSERT INTO historic (acronym, name, period, average, frequency, absence, observation) VALUES ';
-    student.historic.forEach((element) {
+    for (var element in student.historic) {
       sqlHistoric = "$sqlHistoric('${element['acronym']}','${element['name']}','${element['period']}','${element['average']}','${element['frequency']}','${element['asbsense']}', '${element['observation']}'),";
-    });
+    }
     sqlHistoric = '${sqlHistoric.substring(0,sqlHistoric.length-1)};';
 
     String sqlAssessment = 'INSERT INTO assessment (acronym, teacher,name, average, frequency, absence, assessment, max_absences,total_classes, syllabus, objective) VALUES ';
-    student.assessment.forEach((element) {
+    for (var element in student.assessment) {
       sqlAssessment = "$sqlAssessment('${element.acronym}','${element.teacher}','${element.name}','${element.average}','${element.frequency}','${element.absence}','${jsonEncode(element.assessment)}', '${element.maxAbsences}','${element.totalClasses}', '${element.syllabus}', '${element.objective}'),";
-    });
+    }
     sqlAssessment = '${sqlAssessment.substring(0,sqlAssessment.length-1)};';
 
     String sqlSchedule = 'INSERT INTO schedule (weekDay, schedule) VALUES';
-    student.schedule.forEach((element) {
+    for (var element in student.schedule) {
       sqlSchedule = "$sqlSchedule('${element.weekDay}', '${element.schedule.toString()}'),";
-    });
+    }
     sqlSchedule = '${sqlSchedule.substring(0,sqlSchedule.length-1)};';
 
     try{
@@ -84,17 +85,17 @@ class StudentController extends SqliteController{
       }
     });
     await db.rawQuery('SELECT * FROM historic').then((value){
-        value.forEach((element) {
+        for (var element in value) {
           Map<String, String> hist = {};
           element.forEach((key, value) {
             hist[key] = value.toString();
           });
           student.historic.add(hist);
-        });
+        }
     });
 
     await db.rawQuery('SELECT * FROM assessment').then((value){
-      value.forEach((element) {
+      for (var element in value) {
         DisciplineAssessment disciplineAssessment = DisciplineAssessment();
         Map<String,String> assessment = {};
         disciplineAssessment.acronym = element['acronym'].toString();
@@ -113,10 +114,10 @@ class StudentController extends SqliteController{
         });
         disciplineAssessment.assessment = assessment;
         student.assessment.add(disciplineAssessment);
-      });
+      }
     });
     await db.rawQuery('SELECT * FROM schedule').then((value){
-      value.forEach((element) {
+      for (var element in value) {
         Schedule schedule = Schedule();
         schedule.weekDay = element['weekDay'].toString();
         schedule.schedule = element['schedule'].toString().substring(1,element['schedule'].toString().length-1).split('], ').map((element) {
@@ -124,7 +125,7 @@ class StudentController extends SqliteController{
           return element.split(', ');
         }).toList();
         student.schedule.add(schedule);
-      });
+      }
     });
 
   }
@@ -133,7 +134,7 @@ class StudentController extends SqliteController{
   Future insertOrUpdateFirebase(Student stundent)async{
     FirebaseFirestore db = FirebaseFirestore.instance;
     QueryDocumentSnapshot<Map<String, dynamic>> doc = (await db.collection('student').where('ra', isEqualTo: stundent.ra).get()).docs.first;
-    print('Data ${doc.data()}');
+    debugPrint('Data ${doc.data()}');
     // await db.collection('student').doc().set({
     //   'ra' : stundent.ra,
     //   'name' : stundent.name,

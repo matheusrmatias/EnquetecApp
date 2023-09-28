@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 
 abstract class SqliteController{
-  static final _databaseName = "student.db";
+  static const _databaseName = "student.db";
   static Database? database;
   Future startDatabase() async{
     if(database !=null){

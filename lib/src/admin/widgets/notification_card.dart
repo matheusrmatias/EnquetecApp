@@ -2,7 +2,6 @@ import 'package:enquetec/src/admin/controllers/notification_controller.dart';
 import 'package:enquetec/src/admin/models/notification_model.dart';
 import 'package:enquetec/src/admin/repositories/notification_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +10,7 @@ import 'package:unicons/unicons.dart';
 
 import '../../themes/main.dart';
 
+//ignore: must_be_immutable
 class NotificationCard extends StatelessWidget {
   NotificationModel notification;
   NotificationCard({super.key, required this.notification});

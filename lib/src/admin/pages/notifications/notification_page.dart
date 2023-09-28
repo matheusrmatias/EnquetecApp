@@ -1,13 +1,10 @@
 import 'package:enquetec/src/admin/controllers/notification_controller.dart';
 import 'package:enquetec/src/admin/models/coordinator_model.dart';
-import 'package:enquetec/src/admin/models/notification_model.dart';
-import 'package:enquetec/src/admin/pages/notifications/send_notification_page.dart';
 import 'package:enquetec/src/admin/repositories/coordinator_repository.dart';
 import 'package:enquetec/src/admin/repositories/notification_repository.dart';
 import 'package:enquetec/src/admin/widgets/notification_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '../../../themes/main.dart';

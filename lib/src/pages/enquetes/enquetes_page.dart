@@ -1,13 +1,10 @@
 import 'package:contained_tab_bar_view/contained_tab_bar_view.dart';
-import 'package:enquetec/src/controllers/enquete_controller.dart';
 import 'package:enquetec/src/models/student.dart';
 import 'package:enquetec/src/pages/enquetes/tabs/direct_msg_tab.dart';
 import 'package:enquetec/src/pages/enquetes/tabs/enquetes_tab.dart';
 import 'package:enquetec/src/repositories/student_repository.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:unicons/unicons.dart';
 
 import '../../themes/main.dart';
 

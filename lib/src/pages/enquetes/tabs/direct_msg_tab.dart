@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enquetec/src/admin/controllers/messages_controller.dart';
 import 'package:enquetec/src/admin/models/message_model.dart';
@@ -10,7 +9,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 import '../../../repositories/student_repository.dart';
 import '../../../themes/main.dart';
@@ -120,6 +118,9 @@ class _DirectMsgTabState extends State<DirectMsgTab> {
                             },
                           ),
                         );
+                        if(response.statusCode!=200){
+                          throw Exception('Notification Error - CODE:${response.statusCode}');
+                        }
                         await control.insertMessage(message, student);
                         Fluttertoast.showToast(msg: 'Mensagem Enviada');
                         directMsg.clear();
