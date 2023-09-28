@@ -161,12 +161,6 @@ class _LoginPageState extends State<LoginPage> {
       await account.userAssessmentDetails(student);
       // Navigator.pop(context);
 
-      // Firebase Anonymus Auth
-      UserCredential user =  await auth.signInWithEmailAndPassword(email: student.email, password: student.ra);
-      if(user.user == null){
-        throw Exception('Student not register');
-      }
-
       //Update Providers
       answerRep.answers = await answerControl.queryCloudDataBase(student);
       answerRep.allAnswers = answerRep.answers;

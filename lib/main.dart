@@ -2,7 +2,6 @@ import 'package:enquetec/src/admin/controllers/coordinator_controller.dart';
 import 'package:enquetec/src/admin/controllers/enquetes_admin_control.dart';
 import 'package:enquetec/src/admin/controllers/messages_controller.dart';
 import 'package:enquetec/src/admin/controllers/notification_controller.dart';
-import 'package:enquetec/src/admin/controllers/student_controller_admin.dart';
 import 'package:enquetec/src/admin/models/coordinator_model.dart';
 import 'package:enquetec/src/admin/models/enquete_model.dart';
 import 'package:enquetec/src/admin/models/message_model.dart';
@@ -12,7 +11,6 @@ import 'package:enquetec/src/admin/repositories/coordinator_repository.dart';
 import 'package:enquetec/src/admin/repositories/enquete_admin_repository.dart';
 import 'package:enquetec/src/admin/repositories/message_repository.dart';
 import 'package:enquetec/src/admin/repositories/notification_repository.dart';
-import 'package:enquetec/src/admin/repositories/student_admin_repository.dart';
 import 'package:enquetec/src/admin/services/admin_notification_service.dart';
 import 'package:enquetec/src/app_widget.dart';
 import 'package:enquetec/src/controllers/answer_controller.dart';
@@ -97,10 +95,7 @@ void main()async{
       );
     }else{
       await AdminNotificationService().initNotifications();
-      StudentControllerAdmin studentControlAdmin = StudentControllerAdmin();
-      List<Student> studentsList = await studentControlAdmin.queryAllStudent();
       runApp(MultiProvider(providers: [
-        ChangeNotifierProvider<StudentAdminRepository>(create: (context)=>StudentAdminRepository(allStudents: studentsList)),
         ChangeNotifierProvider<MessageRepository>(create: (context)=>MessageRepository(allMessages: messages)),
         ChangeNotifierProvider<CoordinatorRepository>(create: (context)=>CoordinatorRepository(coordinator: coordinator)),
         ChangeNotifierProvider<NotificationRepository>(create: (context)=>NotificationRepository(allNotifications: notifications)),
@@ -130,7 +125,6 @@ void startAdmin(String password)async{
   NotificationControl nControl = NotificationControl();
   CoordinatorControl coordinatorControl = CoordinatorControl();
   EnquetesAdminControl enquetesControl = EnquetesAdminControl();
-  StudentControllerAdmin studentControlAdmin = StudentControllerAdmin();
   //
   try{
     //
@@ -145,7 +139,6 @@ void startAdmin(String password)async{
     List<EnqueteModel> enquetes = await enquetesControl.queryCloudDatabase(coordinator);
     enquetes.sort((a,b) => b.finalDate.compareTo(a.finalDate));
 
-    List<Student> studentsList = await studentControlAdmin.queryAllStudent();
     //
     await AdminNotificationService().initNotifications();
     await AdminNotificationService().initTopics(coordinator);
@@ -156,7 +149,6 @@ void startAdmin(String password)async{
     await enquetesControl.insertAllLocalDatabase(enquetes);
 
     runApp(MultiProvider(providers: [
-      ChangeNotifierProvider<StudentAdminRepository>(create: (context)=>StudentAdminRepository(allStudents: studentsList)),
       ChangeNotifierProvider<MessageRepository>(create: (context)=>MessageRepository(allMessages: messages)),
       ChangeNotifierProvider<CoordinatorRepository>(create: (context)=>CoordinatorRepository(coordinator: coordinator)),
       ChangeNotifierProvider<NotificationRepository>(create: (context)=>NotificationRepository(allNotifications: notifications)),

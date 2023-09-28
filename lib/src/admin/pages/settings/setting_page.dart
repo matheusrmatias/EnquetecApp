@@ -4,23 +4,17 @@ import 'package:enquetec/src/admin/models/coordinator_model.dart';
 import 'package:enquetec/src/admin/pages/enquete/enquete_page.dart';
 import 'package:enquetec/src/admin/pages/notifications/notification_page.dart';
 import 'package:enquetec/src/admin/pages/settings/register/coordinator_register.dart';
-import 'package:enquetec/src/admin/pages/settings/register/student_register.dart';
 import 'package:enquetec/src/admin/repositories/coordinator_repository.dart';
 import 'package:enquetec/src/admin/services/admin_notification_service.dart';
-import 'package:enquetec/src/models/cousers.dart';
 import 'package:enquetec/src/pages/developer_contact.dart';
-import 'package:enquetec/src/pages/enquetes/enquetes_page.dart';
 import 'package:enquetec/src/widgets/copy_text.dart';
 import 'package:enquetec/src/widgets/navigation_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-
 import '../../../pages/privacy_policy.dart';
 import '../../../pages/use_terms.dart';
 import '../../../themes/main.dart';
@@ -56,7 +50,6 @@ class _SettingAdminState extends State<SettingAdmin> {
               CopyCard(text: coordinator.email, ico: const Icon(Icons.email_outlined)),
               NavigationButton(text: 'Alterar Senha', child: const ChangePassword()),
               Divider(color: MainColors.white2,),
-              NavigationButton(text: 'Cadastrar Aluno', child: const StudentRegister()),
               NavigationButton(text: 'Cadastrar Coordenador', child: const CoordinatorRegister()),
               Divider(color: MainColors.white2,),
               NavigationButton(text: 'Histórico de Enquetes', child: const EnquetesAdminPage()),
