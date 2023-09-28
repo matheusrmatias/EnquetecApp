@@ -85,6 +85,12 @@ class AnswerController extends SqliteController{
     await db.execute(sql);
   }
 
+  Future<void> updateLocalDatabase(List<Answer> answers)async{
+    Database db = await startDatabase();
+    await db.delete('answer');
+    await insertAllLocalDatabase(answers);
+  }
+
   Future<void> insertLocalDatabase(Answer answer)async{
     Database db = await startDatabase();
     String sql = '''INSERT INTO answer (uid, enqueteUid, questions, course, discipline, coordinator, dateAnswer, initialDate, finalDate) VALUES(

@@ -1,3 +1,4 @@
+import 'package:enquetec/src/controllers/answer_controller.dart';
 import 'package:enquetec/src/controllers/enquete_controller.dart';
 import 'package:enquetec/src/repositories/answer_uid_repository.dart';
 import 'package:enquetec/src/repositories/enquete_repository.dart';
@@ -43,7 +44,10 @@ class _EnquetesTabState extends State<EnquetesTab> {
         itemBuilder: (ctx, index)=>EnqueteCard(enquete: enqueteRep.enquetes[index]),
       ), onRefresh: ()async{
         EnqueteController control = EnqueteController();
+        AnswerController answerControl = AnswerController();
         try{
+          answerControl.updateLocalDatabase(await answerControl.queryCloudDataBase(student));
+          answerUids.allUidList = (await answerControl.queryLocalDatabase()).map((e) => e.enqueteUid).toList();
           enqueteRep.allEnquetes = await control.queryAllCloudDatabase(student, answerUids.allUidList);
           enqueteRep.enquetes = enqueteRep.allEnquetes;
           Fluttertoast.showToast(msg: 'Enquetes Atualizadas');

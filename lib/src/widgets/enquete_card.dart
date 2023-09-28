@@ -4,6 +4,8 @@ import 'package:enquetec/src/controllers/answer_controller.dart';
 import 'package:enquetec/src/controllers/enquete_controller.dart';
 import 'package:enquetec/src/models/answer.dart';
 import 'package:enquetec/src/models/student.dart';
+import 'package:enquetec/src/repositories/answer_repository.dart';
+import 'package:enquetec/src/repositories/answer_uid_repository.dart';
 import 'package:enquetec/src/repositories/enquete_repository.dart';
 import 'package:enquetec/src/repositories/student_repository.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +28,7 @@ class EnqueteCard extends StatefulWidget {
 class _EnqueteCardState extends State<EnqueteCard> {
   late Student student;
   late Enquete enquete;
+  late AnswerUidRepository answerRep;
   late EnqueteRepository enqueteRep;
   Map<String, String> answers = {};
   bool expand = false;
@@ -43,6 +46,7 @@ class _EnqueteCardState extends State<EnqueteCard> {
 
   @override
   Widget build(BuildContext context) {
+    answerRep = Provider.of<AnswerUidRepository>(context);
     student = Provider.of<StudentRepository>(context).student;
     enqueteRep = Provider.of<EnqueteRepository>(context);
     return AnimatedContainer(
@@ -154,10 +158,14 @@ class _EnqueteCardState extends State<EnqueteCard> {
             await anwerControl.insertCloudDatabase(answer);
             await anwerControl.insertLocalDatabase(answer);
             await enqueteControl.deleteFromDatabase(enquete);
+            List<String> uids = answerRep.allUidList;
+            uids.add(answer.enqueteUid);
+            answerRep.allUidList = uids;
+            answerRep.uidList = uids;
             enqueteRep.enquetes = await enqueteControl.queryAllLocalDatabase();
             enqueteRep.allEnquetes = enqueteRep.enquetes;
           }catch (e){
-            debugPrint('ERROS: $e');
+            debugPrint('ERROR: $e');
             Fluttertoast.showToast(msg: 'Erro ao enviar suas respostas.');
           }finally{
             setState(()=>isSending=false);
