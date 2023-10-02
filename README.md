@@ -39,6 +39,6 @@ flutter run -d "SEU DISPOSITIVO" --dart-define-from-file=config.json
 
 
 ## 🛠Tecnologias Utilizadas
-1. [Flutter]("https://flutter.dev/")
-2. [Dart]("https://dart.dev/")
-3. [Firebase]("https://firebase.google.com/")
+1. ![Flutter]("https://flutter.dev/")
+2. ![Dart]("https://dart.dev/")
+3. ![Firebase]("https://firebase.google.com/")
