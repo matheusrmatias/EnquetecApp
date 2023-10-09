@@ -34,7 +34,7 @@ class MessageCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Flexible(child: Text(message.type, style: TextStyle(color: MainColors.orange, fontSize: 16,  fontWeight: FontWeight.bold))),
-                  Flexible(child: Text(message.name.split(" ")[0], style: TextStyle(color: MainColors.white, fontSize: 14,  fontWeight: FontWeight.bold)))
+                  Flexible(child: Text(message.name, style: TextStyle(color: MainColors.black2, fontSize: 14,  fontWeight: FontWeight.bold)))
                 ],
               ),
               const SizedBox(height: 8),

@@ -2,7 +2,6 @@ import 'package:enquetec/src/models/student.dart';
 import 'package:enquetec/src/repositories/student_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../widgets/discipline_historic_card.dart';
 
 class HistoricTab extends StatefulWidget {
@@ -22,7 +21,7 @@ class _HistoricTabState extends State<HistoricTab> {
     return RefreshIndicator(
       onRefresh: ()async{await widget.onPressed(student);},
       child: ListView.builder(
-        physics: const BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         itemCount: student.historic.length,
         itemBuilder: (context, index) => DisciplineHistoricCard(discipline: student.historic[index]),
       ),

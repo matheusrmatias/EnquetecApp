@@ -21,9 +21,9 @@ class _ScheduleTabState extends State<ScheduleTab> {
     return RefreshIndicator(
       onRefresh: ()async{await widget.onPressed(student);},
       child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           itemCount: student.schedule.length,
-          itemBuilder: (context, index)=>ScheduleCard(schedule: student.schedule[index])),
+          itemBuilder: (context, index)=>student.schedule[index].schedule.isEmpty ? const SizedBox() :ScheduleCard(schedule: student.schedule[index])),
     );
   }
 }

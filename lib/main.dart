@@ -85,7 +85,7 @@ void main()async{
     if(coordinator.name == ''){
       runApp(
           MultiProvider(providers: [
-            Provider<StudentRepository>(create: (context)=>StudentRepository(student)),
+            ChangeNotifierProvider<StudentRepository>(create: (context)=>StudentRepository(student)),
             ChangeNotifierProvider<AnswerUidRepository>(create: (context)=>AnswerUidRepository(allUidList: answers.map((e) => e.enqueteUid).toList())),
             ChangeNotifierProvider<AnswerRepository>(create: (context)=>AnswerRepository(allAnswers: answers)),
             ChangeNotifierProvider<EnqueteRepository>(create: (context)=>EnqueteRepository(allEnquetes: enquetesStudent)),
@@ -111,7 +111,7 @@ void main()async{
     await NotificationService().initNotifications();
     runApp(
         MultiProvider(providers: [
-          Provider<StudentRepository>(create: (context)=>StudentRepository(student)),
+          ChangeNotifierProvider<StudentRepository>(create: (context)=>StudentRepository(student)),
           ChangeNotifierProvider<AnswerUidRepository>(create: (context)=>AnswerUidRepository(allUidList: answers.map((e) => e.enqueteUid).toList())),
           ChangeNotifierProvider<AnswerRepository>(create: (context)=>AnswerRepository(allAnswers: answers)),
           ChangeNotifierProvider<EnqueteRepository>(create: (context)=>EnqueteRepository(allEnquetes: enquetesStudent)),

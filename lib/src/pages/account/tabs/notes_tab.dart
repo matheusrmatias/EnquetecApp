@@ -25,7 +25,7 @@ class _NotesTabState extends State<NotesTab> {
       child: RefreshIndicator(
         onRefresh: ()async{await widget.onPressed(student);},
         child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           itemCount: student.assessment.length,
           itemBuilder: (context, index)=>DisciplineNoteCard(discipline: student.assessment[index]),
         ),

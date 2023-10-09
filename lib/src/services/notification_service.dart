@@ -71,9 +71,9 @@ class NotificationService {
   }
 
   Future<void> endTopic(Student student) async {
-    // await _firebaseMessaging.unsubscribeFromTopic(
-    //     Courses.names[student.graduation.toUpperCase()]!);
-    // await _firebaseMessaging.unsubscribeFromTopic('todos');
+    await _firebaseMessaging.unsubscribeFromTopic(
+        Courses.names[student.graduation.toUpperCase()]!);
+    await _firebaseMessaging.unsubscribeFromTopic('todos');
     FirebaseMessaging.onBackgroundMessage((e)async{});
     FirebaseMessaging.onMessage.listen((e)async{});
     FirebaseMessaging.onMessageOpenedApp.listen((e)async{});
