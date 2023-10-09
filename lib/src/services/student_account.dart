@@ -206,13 +206,6 @@ class StudentAccount{
                 await view.runJavaScriptReturningResult("document.getElementById('Grid1ContainerTbl').firstChild.children[$j].children[0].textContent").then((disciplineAcronym)async{
                   await view.runJavaScriptReturningResult("document.getElementById('Grid1ContainerTbl').firstChild.children[$j].children[1].textContent").then((disciplineName)async{
                     acronyms[disciplineAcronym.toString()]=disciplineName.toString().replaceAll('"', '').substring(0,disciplineName.toString().indexOf('-')-1);
-                    for(int k = 0; k<student.assessment.length;k++){
-                      if(student.assessment[k].name.replaceAll('"', '') == disciplineName.toString().replaceAll('"', '').substring(0, disciplineName.toString().indexOf('-')-2)){
-                        await view.runJavaScriptReturningResult("document.getElementById('Grid1ContainerTbl').firstChild.children[$j].children[3].textContent").then((disciplineTeacher)async{
-                          student.assessment[k].teacher=disciplineTeacher.toString().replaceAll('"', '');
-                        });
-                      }
-                    }
                   });
                 });
               }
@@ -294,6 +287,9 @@ class StudentAccount{
             });
             await view.runJavaScriptReturningResult('document.getElementById("span_W0008W0013vACD_DISCIPLINAOBJETIVO").textContent').then((value){
               student.assessment[i].objective = value.toString().replaceAll('"', '');
+            });
+            await view.runJavaScriptReturningResult('document.getElementById("span_W0005vPRO_PESSOALNOME").textContent').then((value){
+              student.assessment[i].teacher = value.toString().replaceAll('"', '');
             });
             _isLoad = false;
             j = 10;
